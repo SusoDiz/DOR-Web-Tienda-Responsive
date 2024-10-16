@@ -1,0 +1,82 @@
+/* Estilos generales */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Estilos del encabezado */
+header {
+  background-color: #333;
+  color: #fff;
+  padding: 0.5em 0;
+}
+
+nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+nav li {
+  margin: 0 1em;
+}
+
+nav a {
+  text-decoration: none;
+  font-size: 1.2em;
+}
+
+.cabecera {
+  background-color: orange;
+  display: grid;
+  grid-template-columns: auto auto 1fr;
+  align-items: center;
+  width: 100%;
+  margin: auto;
+}
+
+.cabecera nav {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+aside {
+  background-color: yellow;
+}
+
+main {
+  background-color: lightgreen;
+}
+
+.productos {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.productos article {
+  flex: 1 1 25%;
+  max-width: 48%;
+  min-width: 200px;
+  background-color: #e4e4e4;
+  padding: 1em;
+  box-sizing: border-box;
+  margin: 0.5em;
+}
+
+footer {
+  background-color: purple;
+}
+
+/* Disposición para pantallas de entre 576 y 911 px de ancho en formato portrait */
+@media (min-width: 576px) and (max-width: 911px) and (orientation: portrait) {
+    .productos article {
+        flex: 1 1 1;
+    }
+}
