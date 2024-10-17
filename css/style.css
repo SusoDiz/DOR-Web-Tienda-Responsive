@@ -57,13 +57,13 @@ main {
 .productos {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 
 .productos article {
-  flex: 1 1 25%;
-  max-width: 48%;
-  min-width: 200px;
+  flex: 1 1 1; 
+  max-width: 40em; 
+  min-width: 15em;
   background-color: #e4e4e4;
   padding: 1em;
   box-sizing: border-box;
@@ -76,10 +76,16 @@ footer {
 
 /* Disposición para pantallas de entre 576 y 911 px de ancho en formato portrait */
 @media (min-width: 576px) and (max-width: 911px) and (orientation: portrait) {
+  .productos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
   .productos article {
-    flex: 1 1 1;
-    max-width: 48%;
-    min-width: 200px;
+    flex: 1 1 calc(33.33% - 1em); 
+    max-width: calc(33.33% - 1em);
+    min-width: 5em;
     background-color: #e4e4e4;
     padding: 1em;
     box-sizing: border-box;
@@ -97,10 +103,12 @@ footer {
     justify-content: space-around;
     width: 90%;
     margin: auto;
+    flex-wrap: wrap; 
   }
 
   footer section {
-    width: 30%;
+    width: 45%;
+    margin-bottom: 1em;
   }
 
   footer .titulo-footer {
@@ -130,42 +138,44 @@ footer {
 
 @media (min-width: 912px) and (max-width: 1023px),
   (min-width: 576px) and (max-width: 1023px) and (orientation: landscape) {
-  /*productos de 4 en 4*/
+  
+    body {
+      display: grid;
+      grid-template-columns: 1fr 3fr; 
+      grid-template-rows: auto; 
+      grid-template-areas: 
+        "header header"
+        "nav nav"
+        "aside main"
+        "footer footer"; 
+    }
+    header { 
+      grid-area: header; 
+      background-color: #333;
+      color: #fff;
+      padding: 0 0;
+    }
+    nav { grid-area: nav; }
+    main { grid-area: main; }
+
+  .productos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
   .productos article {
-    flex: 1 1 25%;
-    max-width: 48%;
-    min-width: 200px;
+    flex: 1 1; 
+    max-width: 50em; 
+    min-width: 10em;
     background-color: #e4e4e4;
     padding: 1em;
     box-sizing: border-box;
     margin: 0.5em;
   }
 
-  main {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-  }
-
-  .sidebar {
-    width: 20%;
-    background-color: #f4f4f4;
-    padding: 1em;
-  }
-
-  .sidebar ul {
-    list-style: none;
-    padding: 0;
-    margin: 1em;
-  }
-
-  .sidebar a {
-    text-decoration: none;
-    color: #333;
-    margin: 1em;
-  }
-
   footer {
+    grid-area: footer;
     background-color: #333;
     color: #fff;
     padding: 1em 0;
@@ -202,5 +212,54 @@ footer {
   footer a {
     color: #fff;
     text-decoration: none;
+  }
+}
+
+/* Disposición para pantallas de más de 1023 px de ancho */
+
+@media (min-width: 1024px) {
+  body {
+    display: grid;
+    grid-template-columns: 1fr 3fr; 
+    grid-template-rows: auto 1fr auto; 
+    grid-template-areas: 
+      "header header header"
+      "nav main main"
+      "aside main main"
+      "footer footer footer"; 
+  }
+  header { 
+    grid-area: header; 
+    background-color: #333;
+    color: #fff;
+    padding: 0 0;
+  }
+  main { grid-area: main; }
+  nav { grid-area: nav; }
+  
+  aside { 
+    display: flex;
+    flex-direction: column;
+    }
+
+    .productos {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+
+    .productos article {
+      flex: 1 1 25%; 
+      max-width: 23%;
+      min-width: 10em;
+      background-color: #e4e4e4;
+      padding: 1em;
+      box-sizing: border-box;
+      margin: 0.5em;
+    }
+
+  footer {
+    grid-area: footer;
+    background-color: purple;
   }
 }
