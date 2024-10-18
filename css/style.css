@@ -9,9 +9,18 @@ body {
 
 /* Estilos del encabezado */
 header {
+  grid-area: header;
   background-color: #333;
   color: #fff;
-  padding: 0.5em 0;
+  padding: 0 0;
+}
+
+main {
+  grid-area: main;
+}
+nav {
+  grid-area: nav;
+  padding: 1em;
 }
 
 nav ul {
@@ -33,25 +42,53 @@ nav a {
 }
 
 .cabecera {
-  background-color: orange;
+  background-color: red;
   display: grid;
-  grid-template-columns: auto auto 1fr;
+  grid-template-columns: 1fr 2fr 1fr;
   align-items: center;
   width: 100%;
   margin: auto;
 }
 
-.cabecera nav {
-  display: flex;
-  flex-wrap: wrap;
+.cabecera img {
+  width: 20%;
+}
+
+.cabecera .logo-nombre {
+  margin: 2em 2em;
+}
+
+.cabecera .buscador {
+  margin: 2em 2em;
+  align-items: center;
+}
+
+.cabecera .buscador input {
+  width: 85%;
+  padding: 0.5em;
+  font-size: 1em;
+}
+
+.cabecera .buscador button {
+  padding: 0.5em;
+  font-size: 1em;
 }
 
 aside {
   background-color: yellow;
+  padding: 1em;
+  columns: 2;
 }
 
 main {
   background-color: lightgreen;
+  padding: 1em;
+}
+
+main .bloque-grande img {
+  width: 90%;
+  margin: 2em;
+  align-items: center;
 }
 
 .productos {
@@ -61,8 +98,8 @@ main {
 }
 
 .productos article {
-  flex: 1 1 1; 
-  max-width: 40em; 
+  flex: 1 1 1;
+  max-width: 40em;
   min-width: 15em;
   background-color: #e4e4e4;
   padding: 1em;
@@ -70,8 +107,50 @@ main {
   margin: 0.5em;
 }
 
+.productos article img {
+  width: 100%;
+}
+
 footer {
-  background-color: purple;
+  background-color: #333;
+  color: #fff;
+  padding: 1em 0;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-around;
+  width: 90%;
+  margin: auto;
+  flex-wrap: wrap;
+  columns: 2;
+}
+
+footer section {
+  width: 45%;
+  margin-bottom: 1em;
+}
+
+footer .titulo-footer {
+  font-size: 1.2em;
+  font-weight: bold;
+  margin-bottom: 0.5em;
+}
+
+footer ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+footer li {
+  margin-left: 1em;
+  margin-bottom: 0.5em;
+}
+
+footer a {
+  color: #fff;
+  text-decoration: none;
 }
 
 /* Disposición para pantallas de entre 576 y 911 px de ancho en formato portrait */
@@ -83,7 +162,7 @@ footer {
   }
 
   .productos article {
-    flex: 1 1 calc(33.33% - 1em); 
+    flex: 1 1 calc(33.33% - 1em);
     max-width: calc(33.33% - 1em);
     min-width: 5em;
     background-color: #e4e4e4;
@@ -92,45 +171,13 @@ footer {
     margin: 0.5em;
   }
 
-  footer {
-    background-color: #333;
-    color: #fff;
-    padding: 1em 0;
-  }
-
-  .footer-content {
-    display: flex;
-    justify-content: space-around;
-    width: 90%;
-    margin: auto;
-    flex-wrap: wrap; 
-  }
-
   footer section {
-    width: 45%;
+    width: 30%;
     margin-bottom: 1em;
   }
 
-  footer .titulo-footer {
-    font-size: 1.2em;
-    font-weight: bold;
-    margin-bottom: 0.5em;
-  }
-
-  footer ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-
-  footer li {
-    margin-left: 1em;
-    margin-bottom: 0.5em;
-  }
-
-  footer a {
-    color: #fff;
-    text-decoration: none;
+  .footer-content {
+    columns: 3;
   }
 }
 
@@ -138,25 +185,33 @@ footer {
 
 @media (min-width: 912px) and (max-width: 1023px),
   (min-width: 576px) and (max-width: 1023px) and (orientation: landscape) {
-  
-    body {
-      display: grid;
-      grid-template-columns: 1fr 3fr; 
-      grid-template-rows: auto; 
-      grid-template-areas: 
-        "header header"
-        "nav nav"
-        "aside main"
-        "footer footer"; 
-    }
-    header { 
-      grid-area: header; 
-      background-color: #333;
-      color: #fff;
-      padding: 0 0;
-    }
-    nav { grid-area: nav; }
-    main { grid-area: main; }
+  body {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    grid-template-rows: auto;
+    grid-template-areas:
+      "header header"
+      "nav nav"
+      "aside main"
+      "footer footer";
+  }
+  header {
+    grid-area: header;
+    background-color: #333;
+    color: #fff;
+    padding: 0 0;
+  }
+  nav {
+    grid-area: nav;
+  }
+  main {
+    grid-area: main;
+  }
+
+  aside {
+    display: flex;
+    flex-direction: column;
+  }
 
   .productos {
     display: flex;
@@ -165,8 +220,8 @@ footer {
   }
 
   .productos article {
-    flex: 1 1; 
-    max-width: 50em; 
+    flex: 1 1;
+    max-width: 50em;
     min-width: 10em;
     background-color: #e4e4e4;
     padding: 1em;
@@ -176,42 +231,11 @@ footer {
 
   footer {
     grid-area: footer;
-    background-color: #333;
-    color: #fff;
-    padding: 1em 0;
-  }
-
-  .footer-content {
-    display: flex;
-    justify-content: space-around;
-    width: 90%;
-    margin: auto;
   }
 
   footer section {
     width: 30%;
-  }
-
-  footer .titulo-footer {
-    font-size: 1.2em;
-    font-weight: bold;
-    margin-bottom: 0.5em;
-  }
-
-  footer ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-
-  footer li {
-    margin-left: 1em;
-    margin-bottom: 0.5em;
-  }
-
-  footer a {
-    color: #fff;
-    text-decoration: none;
+    margin-bottom: 1em;
   }
 }
 
@@ -220,46 +244,42 @@ footer {
 @media (min-width: 1024px) {
   body {
     display: grid;
-    grid-template-columns: 1fr 3fr; 
-    grid-template-rows: auto 1fr auto; 
-    grid-template-areas: 
+    grid-template-columns: 1fr 3fr;
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas:
       "header header header"
       "nav main main"
       "aside main main"
-      "footer footer footer"; 
+      "footer footer footer";
   }
-  header { 
-    grid-area: header; 
-    background-color: #333;
-    color: #fff;
-    padding: 0 0;
-  }
-  main { grid-area: main; }
-  nav { grid-area: nav; }
-  
-  aside { 
+
+  aside {
     display: flex;
     flex-direction: column;
-    }
+  }
 
-    .productos {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-    }
+  .productos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
 
-    .productos article {
-      flex: 1 1 25%; 
-      max-width: 23%;
-      min-width: 10em;
-      background-color: #e4e4e4;
-      padding: 1em;
-      box-sizing: border-box;
-      margin: 0.5em;
-    }
+  .productos article {
+    flex: 1 1 25%;
+    max-width: 23%;
+    min-width: 10em;
+    background-color: #e4e4e4;
+    padding: 1em;
+    box-sizing: border-box;
+    margin: 0.5em;
+  }
 
   footer {
     grid-area: footer;
-    background-color: purple;
+  }
+
+  footer section {
+    width: 30%;
+    margin-bottom: 1em;
   }
 }
